@@ -1,0 +1,14 @@
+package br.com.caelum.notasfiscais.mb;
+
+import br.com.caelum.notasfiscais.modelo.Produto;
+
+@ManageBean
+public class ProdutoBean {
+	private Produto produto = new Produto();
+	
+	public Produto getProduto(); {
+		return this.produto;
+	}
+	
+
+}

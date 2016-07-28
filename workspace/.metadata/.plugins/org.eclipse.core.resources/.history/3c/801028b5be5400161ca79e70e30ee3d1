@@ -1,0 +1,9 @@
+package br.com.caelum.notasfiscais.listener;
+
+public class LoginListener {
+	public void onLogin(@Observes Usuario usuario) {
+		System.out.println("Usuario se logou no sistema: " + usuario.getLogin());
+		System.out.println("Email enviado para: " + emailComercial);
+	}
+
+}
