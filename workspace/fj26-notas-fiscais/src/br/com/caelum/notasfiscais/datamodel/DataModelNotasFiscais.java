@@ -26,7 +26,8 @@ public class DataModelNotasFiscais extends LazyDataModel<NotaFiscal> {
 	}
 	
 	public List<NotaFiscal> load(int inicio, int quantidade, String campoOrdenacao,
-			SortOrder sentidoOrdenacao, Map<String,String> filtros) {
+			SortOrder sentidoOrdenacao, Map<String, Object> filtros) {
+	
 		return dao.listaTodosPaginada(inicio, quantidade);	
 	}
 
