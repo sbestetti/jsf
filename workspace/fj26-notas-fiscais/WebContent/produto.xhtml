@@ -33,6 +33,7 @@
 							
 				<f:ajax execute=":produtoForm" render=":tabelaProdutos :produtoForm">
 					<h:commandButton event="click" action="#{produtoBean.grava}" value="Gravar"/>
+					<h:commandButton value="Cancelar edicao" action="produto" immediate="true"/>
 				</f:ajax>
 			</fieldset>				
 		</h:form>
@@ -49,6 +50,8 @@
 				<f:facet name="header">Preço</f:facet>
 				#{produto.preco}
 			</h:column>
+			
+			
 			
 			<h:column>
 				<f:facet name="header">Ações</f:facet>

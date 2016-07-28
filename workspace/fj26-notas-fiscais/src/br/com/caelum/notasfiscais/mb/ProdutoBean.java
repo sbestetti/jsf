@@ -66,4 +66,9 @@ public class ProdutoBean {
 		}
 	}
 	
+	public void cancela() {
+		System.out.println("Cancela edicao");
+		this.produto = new Produto();
+	}
+	
 }
