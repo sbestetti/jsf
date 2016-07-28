@@ -10,8 +10,7 @@ import javax.persistence.Persistence;
 public class JPAUtil {
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("notas");
 
-	@Produces
-	@RequestScoped
+	@Produces @RequestScoped
 	public EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}

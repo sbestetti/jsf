@@ -3,19 +3,18 @@ package br.com.caelum.notasfiscais.mb;
 import java.io.Serializable;
 
 import javax.enterprise.context.Conversation;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 
 import br.com.caelum.notasfiscais.dao.NotaFiscalDao;
 import br.com.caelum.notasfiscais.dao.ProdutoDao;
 import br.com.caelum.notasfiscais.modelo.Item;
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
 import br.com.caelum.notasfiscais.modelo.Produto;
-
-@Named @RequestScoped
+import br.com.caelum.notasfiscais.tx.Transactional;
 @Transactional
+@Named @ConversationScoped
 public class NotaFiscalBean implements Serializable {
 	/**
 	 * 
@@ -50,7 +49,7 @@ public class NotaFiscalBean implements Serializable {
 	@Inject
 	private Conversation conversation;
 	
-	@Transactional
+	
 	public String gravar() {
 		this.notaFiscalDao.adiciona(notaFiscal);
 		conversation.end();
@@ -70,10 +69,9 @@ public class NotaFiscalBean implements Serializable {
 		item.setNotaFiscal(notaFiscal);
 		
 		item = new Item();
-		idProduto = null;
 	}
 	
-	public String guardar() {
+	public String avancar() {
 		
 		if(conversation.isTransient())
 		{

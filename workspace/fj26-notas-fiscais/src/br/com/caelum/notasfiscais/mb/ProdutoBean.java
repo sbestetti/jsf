@@ -1,24 +1,19 @@
 package br.com.caelum.notasfiscais.mb;
 
-import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.Transactional;
 
 import br.com.caelum.notasfiscais.dao.ProdutoDao;
 import br.com.caelum.notasfiscais.modelo.Produto;
+import br.com.caelum.notasfiscais.tx.Transactional;
 
-@Named
-@SessionScoped
 @Transactional
-public class ProdutoBean implements Serializable {
+@Model
+public class ProdutoBean {
 	private Produto produto = new Produto();
 	private List<Produto> produtos;
-	
-	private Double total;
 	
 	@Inject
 	private ProdutoDao dao;
@@ -27,7 +22,7 @@ public class ProdutoBean implements Serializable {
 		return produto;
 	}
 
-	@Transactional
+
 	public void grava() {
 		if(produto.getId()==null)
 			dao.adiciona(produto);
@@ -47,7 +42,7 @@ public class ProdutoBean implements Serializable {
 		return produtos;
 	}
 	
-	@Transactional
+	
 	public void remove(Produto produto) {
 		dao.remove(produto);
 		this.produtos = dao.listaTodos();
@@ -55,14 +50,6 @@ public class ProdutoBean implements Serializable {
 	
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-	}
-	
-	public Double somar(){
-		total = 0.0;
-		for (Produto produto : produtos) {
-			total = total + produto.getPreco();
-		}
-		return total;
 	}
 	
 }
